@@ -1,0 +1,49 @@
+body {
+    background-image: url("http://localhost/AichatBot/Images/background.jpg");
+    background-size:cover;
+    background-attachment: fixed;
+}
+
+.jumbotron{
+	background-color:transparent !important;
+}
+
+.chatwindow{
+	max-width: 95%;
+}
+
+.chatlog{
+	border: 1px solid; 
+	border-color: black;
+	height: 425px;
+    overflow:auto;
+}
+
+.bot{
+	border: 1px solid;
+	border-color: #0099CC;
+	border-radius: 1em;
+	background-color: #0099CC;
+	max-width: 60%;
+	clear: both;
+	padding: 5px;
+	float: right;
+    
+}
+
+.human{
+	border: 1px solid;
+	border-color: yellow;
+	border-radius: 1em;
+	background-color: yellow;
+	max-width: 60%;
+	clear: both;
+	padding: 5px;
+}
+
+.chatbox{
+	border: 1px solid;
+	border-color: white;
+	background-color: white;
+	min-height: 75px;
+}
