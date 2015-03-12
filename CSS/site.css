@@ -4,6 +4,10 @@ body {
     background-attachment: fixed;
 }
 
+      hr{
+        margin: 1em;
+      }
+
 .jumbotron{
 	background-color:transparent !important;
 }
