@@ -121,8 +121,8 @@
 				var chatwindow = $('#chat_window');
 				
 				var row          = $(document.createElement('blockquote')).addClass('human');
-				var user_cell    = $(document.createElement('div')).addClass('bot pull-right').text(person);
-				var user_message = $(document.createElement('div')).addClass('name pull-right').text(message);
+				var user_cell    = $(document.createElement('div')).addClass('name pull-right').text(person);
+				var user_message = $(document.createElement('div')).addClass('').text(message);
 				
 				row.append(user_cell)
 				.append(user_message);
@@ -138,9 +138,9 @@
 				
 				var chatwindow = $('#chat_window');
 				
-				var row          = $(document.createElement('blockquote')).addClass('human');
-				var user_cell    = $(document.createElement('div')).addClass('bot pull-right').text(person);
-				var user_message = $(document.createElement('div')).addClass('name pull-right').text(message);
+				var row          = $(document.createElement('blockquote')).addClass('bot pull-right');
+				var user_cell    = $(document.createElement('div')).addClass('name pull-right').text(person);
+				var user_message = $(document.createElement('div')).addClass('').text(message);
 				
 				row.append(user_cell)
 				.append(user_message);
