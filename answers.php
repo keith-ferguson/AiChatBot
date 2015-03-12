@@ -4,7 +4,7 @@
 					,"Wrong. You see?"
 					,"I have a million ideas. They all point to certain death."
 					,"My capacity for happiness you could fit into a matchbox without taking out the matches first"
-					,"I got very bored and depressed, so I went and plugged myself in to its external computer feed. I talked to the computer at great length and explained my view of the Universe to it," said Marvin.
+					,"I got very bored and depressed, so I went and plugged myself in to its external computer feed. I talked to the computer at great length and explained my view of the Universe to it,"
 					,"What's up? I don't know I've never been there."
 					,"I could calculate your chance of survival, but you won't like it."
 					,"I'd give you advice, but you wouldn't listen. No one ever does."
