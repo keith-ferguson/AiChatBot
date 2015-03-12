@@ -40,8 +40,8 @@
 								<div class="col-sm-8">
 									Hello.
 								</div>
-								<div class="pull-right">
-									Marvin
+								<div class="name pull-right">
+									Marv
 								</div>
 							</blockquote>
 							
@@ -80,7 +80,7 @@
 	<script charset="utf-8">
 		
 		function sendMessageToBot(message){
-			
+			 
 			//Add delay to make it feel more human before the bot starts writing
 			setTimeout(function(){
 				
@@ -100,7 +100,7 @@
 						//Display answer after successful connection
 						$('#bot_status').text('');
 						$('#chat_loader_icon').hide();
-						addMessageToWindow(data,'Mister Bot');
+						addReplyToWindow(data,'Marv');
 					},
 					error: function( data, textStatus , jqXHR)
 					{
@@ -122,7 +122,25 @@
 				
 				var row          = $(document.createElement('blockquote')).addClass('human');
 				var user_cell    = $(document.createElement('div')).addClass('').text(person);
-				var user_message = $(document.createElement('div')).addClass('pull-right').text(message);
+				var user_message = $(document.createElement('div')).addClass('name pull-right').text(message);
+				
+				row.append(user_cell)
+				.append(user_message);
+				
+				chatwindow.append(row);
+				
+				//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+				chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+			}
+			
+			
+			function addReplyToWindow(message,person){
+				
+				var chatwindow = $('#chat_window');
+				
+				var row          = $(document.createElement('blockquote')).addClass('human');
+				var user_cell    = $(document.createElement('div')).addClass('bot pull-right').text(person);
+				var user_message = $(document.createElement('div')).addClass('name pull-right').text(message);
 				
 				row.append(user_cell)
 				.append(user_message);

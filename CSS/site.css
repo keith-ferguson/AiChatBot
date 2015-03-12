@@ -1,5 +1,5 @@
 body {
-    background-image: url("//Images/background.jpg");
+    background-image: url("/Images/background.jpg");
     background-size:cover;
     background-attachment: fixed;
 }
@@ -44,6 +44,10 @@ body {
 	clear: both;
 	padding: 5px;
 }
+
+.name{
+	font:status-bar;
+	}
 
 .chatbox{
 	border: 1px solid;
