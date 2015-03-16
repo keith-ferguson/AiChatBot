@@ -35,16 +35,9 @@
 						</div>
 						<div id='chat_window' class="panel-body" style='height:200px;overflow-y:scroll'>
 							<!-- Main Chat -->
-							
-							<blockquote class="bot pull-right">
-								<div class="col-sm-8">
-									Hello.
-								</div>
-								<div class="name pull-right">
-									Marv
-								</div>
-							</blockquote>
-							
+							<div class="bubbledRight">
+								Hello.
+							</div>
 						</div>
 						<!-- Bot status -->
 						<div class="panel-footer" style='min-height:40px;'>
@@ -76,11 +69,11 @@
 		
 	</body>
 	
-
+	
 	<script charset="utf-8">
 		
 		function sendMessageToBot(message){
-			 
+			
 			//Add delay to make it feel more human before the bot starts writing
 			setTimeout(function(){
 				
@@ -100,7 +93,7 @@
 						//Display answer after successful connection
 						$('#bot_status').text('');
 						$('#chat_loader_icon').hide();
-						addReplyToWindow(data,'Marv');
+						addReplyToWindow(data);
 					},
 					error: function( data, textStatus , jqXHR)
 					{
@@ -109,67 +102,63 @@
 						$('#chat_loader_icon').hide();
 						alert('unable to connect to bot at this time');
 					}
-					});
-					
-				}, 600); //0.6 seconds
-				
-			}
-			
-			
-			function addMessageToWindow(message,person){
-				
-				var chatwindow = $('#chat_window');
-				
-				var row          = $(document.createElement('blockquote')).addClass('human');
-				var user_cell    = $(document.createElement('div')).addClass('name pull-right').text(person);
-				var user_message = $(document.createElement('div')).addClass('').text(message);
-				
-				row.append(user_cell)
-				.append(user_message);
-				
-				chatwindow.append(row);
-				
-				//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
-				chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
-			}
-			
-			
-			function addReplyToWindow(message,person){
-				
-				var chatwindow = $('#chat_window');
-				
-				var row          = $(document.createElement('blockquote')).addClass('bot pull-right');
-				var user_cell    = $(document.createElement('div')).addClass('name pull-right').text(person);
-				var user_message = $(document.createElement('div')).addClass('').text(message);
-				
-				row.append(user_cell)
-				.append(user_message);
-				
-				chatwindow.append(row);
-				
-				//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
-				chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
-			}
-			
-			$(document).ready(function() {
-				
-				$('#chatform').on('submit',function(event){
-					event.preventDefault();
-					var messageinput = $(this).find('[name="message"]');
-					var message = messageinput.val();
-					
-					if(message.length > 0){
-						messageinput.val('').focus(); //clear input box after saving
-						
-						// Instantly add user message to chat
-						addMessageToWindow(message,'Me');
-						
-						// Send message to bot which will reply in its own time
-						sendMessageToBot(message);
-					}
-					
 				});
+				
+			}, 600); //0.6 seconds
+			
+		}
+		
+		
+		function addMessageToWindow(message){
+			
+			var chatwindow = $('#chat_window');
+			
+			var row          = $(document.createElement('div')).addClass('bubbledLeft');
+			var user_message = $(document.createElement('div')).addClass('chatline').text(message);
+			
+			row.append(user_message);
+			
+			chatwindow.append(row);
+			
+			//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+			chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+		}
+		
+		
+		function addReplyToWindow(message){
+			
+			var chatwindow = $('#chat_window');
+			
+			var row          = $(document.createElement('div')).addClass('bubbledRight');
+			var bot_message = $(document.createElement('div')).addClass('chatline').text(message);
+			
+			row.append(bot_message);
+			
+			chatwindow.append(row);
+			
+			//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+			chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+		}
+		
+		$(document).ready(function() {
+			
+			$('#chatform').on('submit',function(event){
+				event.preventDefault();
+				var messageinput = $(this).find('[name="message"]');
+				var message = messageinput.val();
+				
+				if(message.length > 0){
+					messageinput.val('').focus(); //clear input box after saving
+					
+					// Instantly add user message to chat
+					addMessageToWindow(message);
+					
+					// Send message to bot which will reply in its own time
+					sendMessageToBot(message);
+				}
+				
 			});
+		});
 	</script>
 	
 </html>
