@@ -1,12 +1,12 @@
 body {
-    background-image: url("/Images/background.jpg");
+    background-image: url("/background.jpg");
     background-size:cover;
     background-attachment: fixed;
 }
 
-      hr{
-        margin: 1em;
-      }
+hr{
+	margin: 1em;
+}
 
 .jumbotron{
 	background-color:transparent !important;
@@ -23,35 +23,117 @@ body {
     overflow:auto;
 }
 
-.bot{
-	border: 1px solid;
-	border-color: #0099CC;
-	border-radius: 1em;
-	background-color: #0099CC;
-	max-width: 60%;
-	clear: both;
-	padding: 5px;
-	float: right;
-    
+
+/* Approach from http://www.rwe-uk.com/blog/comments/ichat_like_speech_bubbles_with_css_3/ */
+.bubbledLeft,.bubbledRight{
+	position: relative;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	max-width: 80%;
 }
 
-.human{
-	border: 1px solid;
-	border-color: yellow;
-	border-radius: 1em;
-	background-color: yellow;
-	max-width: 60%;
+.bubbledLeft{
+	float: left;
+	margin-right: auto;
+	margin-left: 36px;
+	padding: 4px 10px 4px 15px; /*position within the border*/
+
+	clear: left;
+}
+
+.bubbledLeft:before{
+	z-index: -1;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	content: "";
+
+	border-width: 8px 10px 8px 17px; 
+	border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-webkit-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-moz-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-o-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+}
+
+.bubbledLeft:after{
+	z-index: -1;
+	position: absolute;
+	left: -36px;
+	width: 32px;
+	bottom: 0px;
+	height: 32px;
+	content:"";
+
+	background-image: url(left_chatter.png);
+	background-size: 32px 32px;
+	background-position: bottom left;
+
+	border-radius: 3px;
+	-webkit-border-radius: 3px;	
+}
+
+.bubbledRight{
+	float: right;
+	margin-left: auto;
+	text-align: right;
+
+	margin-right: 36px;
+	padding: 4px 15px 4px 10px; /*position within the border*/	
+	
+	clear: right;
+}
+
+.bubbledRight:before{
+	z-index: -1;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	content: "";
+
+	border-width: 8px 17px 8px 10px; 
+	border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-webkit-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-moz-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-o-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+}
+
+.bubbledRight:after{
+	z-index: -1;
+	position: absolute;
+	right: -36px;
+	width: 32px;
+	bottom: 0px;
+	height: 32px;
+	content:"";
+
+	background-image: url(marvin.ico);
+	background-size: 32px 32px;
+	background-position: bottom left;
+
+	border-radius: 3px;
+	-webkit-border-radius: 3px;	
+}
+
+
+.chatline{
 	clear: both;
-	padding: 5px;
 }
 
 .name{
 	font:status-bar;
-	}
+}
 
 .chatbox{
 	border: 1px solid;
 	border-color: white;
 	background-color: white;
 	min-height: 75px;
+}
+
+.input-group{
+	width: 100%;
 }
