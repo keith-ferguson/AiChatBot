@@ -63,102 +63,149 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-2 col-sm-1 column">
+					<div id="evaluate" class="rateResponse" style="display:none">
+						<h2>Please rate my last response</h2>
+						<label class="radio-inline"><input type="radio" id="great" name="optradio">Great</label>
+						<label class="radio-inline"><input type="radio" id="undecided" name="optradio">Not Sure</label>
+						<label class="radio-inline"><input type="radio" id="terrible" name="optradio">Terrible</label>
+						<input id="chat" type="submit" class="btn btn-success" onclick="rate()" value="Rate">
+						<hr>
+						<p style="color:black;font-family:courier">&#169; Copyright 2015 - Keith Ferguson</p>
+					</div>
 				</div>
 			</div>
 		</div>
-		
-	</body>
+	</div>
 	
+</body>
+
+
+<script charset="utf-8">
 	
-	<script charset="utf-8">
+	function sendMessageToBot(message){
 		
-		function sendMessageToBot(message){
+		//Add delay to make it feel more human before the bot starts writing
+		setTimeout(function(){
 			
-			//Add delay to make it feel more human before the bot starts writing
-			setTimeout(function(){
-				
-				//Inform the user the bot is writing a message
-				$('#bot_status').text('Mister bot is writing a message');
-				$('#chat_loader_icon').show();
-				
-				//Submit message to php bot for processing
-				$.ajax({
-					url:'answers.php',
-					type: "POST",
-					data: message,
-					dataType:'json',
-					cache: false,
-					success: function( data, textStatus , jqXHR)
-					{
-						//Display answer after successful connection
-						$('#bot_status').text('');
-						$('#chat_loader_icon').hide();
-						addReplyToWindow(data);
-					},
-					error: function( data, textStatus , jqXHR)
-					{
-						//something has gone wrong, is the url right or php running?
-						$('#bot_status').text('');
-						$('#chat_loader_icon').hide();
-						alert('unable to connect to bot at this time');
-					}
-				});
-				
-			}, 600); //0.6 seconds
+			//Inform the user the bot is writing a message
+			$('#bot_status').text('Mister bot is writing a message');
+			$('#chat_loader_icon').show();
 			
-		}
-		
-		
-		function addMessageToWindow(message){
-			
-			var chatwindow = $('#chat_window');
-			
-			var row          = $(document.createElement('div')).addClass('bubbledLeft');
-			var user_message = $(document.createElement('div')).addClass('chatline').text(message);
-			
-			row.append(user_message);
-			
-			chatwindow.append(row);
-			
-			//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
-			chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
-		}
-		
-		
-		function addReplyToWindow(message){
-			
-			var chatwindow = $('#chat_window');
-			
-			var row          = $(document.createElement('div')).addClass('bubbledRight');
-			var bot_message = $(document.createElement('div')).addClass('chatline').text(message);
-			
-			row.append(bot_message);
-			
-			chatwindow.append(row);
-			
-			//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
-			chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
-		}
-		
-		$(document).ready(function() {
-			
-			$('#chatform').on('submit',function(event){
-				event.preventDefault();
-				var messageinput = $(this).find('[name="message"]');
-				var message = messageinput.val();
-				
-				if(message.length > 0){
-					messageinput.val('').focus(); //clear input box after saving
-					
-					// Instantly add user message to chat
-					addMessageToWindow(message);
-					
-					// Send message to bot which will reply in its own time
-					sendMessageToBot(message);
+			//Submit message to php bot for processing
+			$.ajax({
+				url:'answers.php',
+				type: "POST",
+				data: message,
+				dataType:'json',
+				cache: false,
+				success: function( data, textStatus , jqXHR)
+				{
+					//Display answer after successful connection
+					$('#bot_status').text('');
+					$('#chat_loader_icon').hide();
+					addReplyToWindow(data);
+					document.getElementById('evaluate').style.display = "inline";
+				},
+				error: function( data, textStatus , jqXHR)
+				{
+					//something has gone wrong, is the url right or php running?
+					$('#bot_status').text('');
+					$('#chat_loader_icon').hide();
+					alert('unable to connect to bot at this time');
 				}
-				
 			});
-		});
-	</script>
+			
+		}, 600); //0.6 seconds
+		
+	}
 	
+	
+	function addMessageToWindow(message){
+		
+		var chatwindow = $('#chat_window');
+		
+		var row          = $(document.createElement('div')).addClass('bubbledLeft');
+		var user_message = $(document.createElement('div')).addClass('chatline').text(message);
+		
+		row.append(user_message);
+		
+		chatwindow.append(row);
+		
+		//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+		chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+	}
+	
+	
+	function addReplyToWindow(message){
+		
+		var chatwindow = $('#chat_window');
+		
+		var row          = $(document.createElement('div')).addClass('bubbledRight');
+		var bot_message = $(document.createElement('div')).addClass('chatline').text(message);
+		
+		row.append(bot_message);
+		
+		chatwindow.append(row);
+		
+		//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+		chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+	}
+	
+	$(document).ready(function() {
+		
+		$('#chatform').on('submit',function(event){
+			event.preventDefault();
+			var messageinput = $(this).find('[name="message"]');
+			var message = messageinput.val();
+			
+			if(message.length > 0){
+				messageinput.val('').focus(); //clear input box after saving
+				
+				// Instantly add user message to chat
+				addMessageToWindow(message);
+				
+				// Send message to bot which will reply in its own time
+				sendMessageToBot(message);
+			}
+			
+		});
+	});
+	
+	
+	function rate(){
+		var rate_value;
+		if(document.getElementById('great').checked){
+			rate_value = "great";
+		}
+		else if(document.getElementById('undecided').checked){
+			rate_value = "undecided";
+		}
+		else if(document.getElementById('terrible').checked){
+			rate_value = "terrible";
+		}
+		else{
+			rate_value = "not";
+		}
+		
+		var query = document.getElementById('message').value;
+		alert("You said :"+user_message);
+		alert("Marvin said :"+bot_message);
+		alert("The rating was :"+rate_value);
+		
+		$.ajax({
+			url: 'processResponse.php',
+			type: 'post',
+			date: {query: user_message, botchat: bot_message, response: rate_value},
+			async: false,
+			success: function(data)
+			{
+				document.getElementById("evaluate").style.display = "none";
+				document.getElementById("success").sytle.display = "inline";
+			},
+			cache: false
+		});
+	}
+	
+</script>
+
 </html>

@@ -128,9 +128,20 @@ hr{
 	-ms-border-radius: 3px;	
 }
 
-.name{
-	font:status-bar;
-}
+.rateResponse{
+	background-color:#E0E0E0;
+	position:fixed;
+	top:5px;
+	right:10px;
+	z-index:1;
+	border-radius:15px;
+	border-top: solid #E0E0E0 1px;
+	margin: 10px;
+	padding: 2px;
+	width: 500px;
+	height: 200px;
+	padding-bottom: 2px;
+	}
 
 .chatbox{
 	border: 1px solid;
