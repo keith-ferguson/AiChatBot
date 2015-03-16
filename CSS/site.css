@@ -1,5 +1,5 @@
 body {
-    background-image: url("/background.jpg");
+    background-image: url("http://safe-peak-3794.herokuapp.com/background.jpg");
     background-size:cover;
     background-attachment: fixed;
 }
@@ -21,6 +21,7 @@ hr{
 	border-color: black;
 	height: 425px;
     overflow:auto;
+	position: relative;
 }
 
 
@@ -36,8 +37,17 @@ hr{
 .bubbledLeft{
 	float: left;
 	margin-right: auto;
+	
 	margin-left: 36px;
 	padding: 4px 10px 4px 15px; /*position within the border*/
+	
+	
+
+	border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-webkit-border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-moz-border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-o-border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	
 }
 
 .bubbledLeft:before{
@@ -48,12 +58,7 @@ hr{
 	bottom: 0px;
 	left: 0px;
 	content: "";
-
 	border-width: 8px 10px 8px 17px; 
-	border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
-	-webkit-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
-	-moz-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
-	-o-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
 }
 
 .bubbledLeft:after{
@@ -65,7 +70,7 @@ hr{
 	height: 32px;
 	content:"";
 
-	background-image: url(left_chatter.png);
+	background-image: url(http://safe-peak-3794.herokuapp.com/CSS/left_chatter.png);
 	background-size: 32px 32px;
 	background-position: bottom left;
 
@@ -82,7 +87,12 @@ hr{
 	text-align: right;
 
 	margin-right: 36px;
-	padding: 4px 15px 4px 10px; /*position within the border*/	
+	padding: 4px 15px 4px 10px; /*position within the border*/
+	
+	border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-webkit-border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-moz-border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-o-border-image: url(http://safe-peak-3794.herokuapp.com/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
 }
 
 .bubbledRight:before{
@@ -95,10 +105,7 @@ hr{
 	content: "";
 
 	border-width: 8px 17px 8px 10px; 
-	border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
-	-webkit-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
-	-moz-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
-	-o-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+
 }
 
 .bubbledRight:after{
@@ -110,12 +117,12 @@ hr{
 	height: 32px;
 	content:"";
 
-	background-image: url(marvin.ico);
+	background-image: url(http://safe-peak-3794.herokuapp.com/CSS/marvin.ico);
 	background-size: 32px 32px;
 	background-position: bottom left;
 
 	border-radius: 3px;
-	-webkit-border-radius: 3px;	
+	-webkit-border-radius: 3px;		
 	-moz-border-radius: 3px;	
 	-o-border-radius: 3px;	
 	-ms-border-radius: 3px;	
