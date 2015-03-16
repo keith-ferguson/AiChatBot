@@ -30,6 +30,7 @@ hr{
 	margin-top: 5px;
 	margin-bottom: 5px;
 	max-width: 80%;
+	clear: both;
 }
 
 .bubbledLeft{
@@ -37,8 +38,6 @@ hr{
 	margin-right: auto;
 	margin-left: 36px;
 	padding: 4px 10px 4px 15px; /*position within the border*/
-
-	clear: left;
 }
 
 .bubbledLeft:before{
@@ -72,6 +71,9 @@ hr{
 
 	border-radius: 3px;
 	-webkit-border-radius: 3px;	
+	-moz-border-radius: 3px;	
+	-o-border-radius: 3px;	
+	-ms-border-radius: 3px;	
 }
 
 .bubbledRight{
@@ -81,8 +83,6 @@ hr{
 
 	margin-right: 36px;
 	padding: 4px 15px 4px 10px; /*position within the border*/	
-	
-	clear: right;
 }
 
 .bubbledRight:before{
@@ -116,11 +116,9 @@ hr{
 
 	border-radius: 3px;
 	-webkit-border-radius: 3px;	
-}
-
-
-.chatline{
-	clear: both;
+	-moz-border-radius: 3px;	
+	-o-border-radius: 3px;	
+	-ms-border-radius: 3px;	
 }
 
 .name{
