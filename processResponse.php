@@ -3,9 +3,9 @@
 		This file needs to send the users interpretation of the response to the database. We get all the data that 
 		has been sent using the Ajax query and store them in PHP variables. 
 	*/
-	$talk = $_POST['user_message'];
-	$botchat = $_POST['bot_message'];
-	$evaluation = $_POST['response'];
+	$talk = $_POST['message'];
+	$botchat = $_POST['marvinSaid'];
+	$evaluation = $_POST['rating'];
 	/*
 		We need to establish a connection to the database and insert the interaction into a suitable place.
 		The connection below is connected to the database called "bot", running of the localhost with the user and password both 
