@@ -43,10 +43,10 @@ hr{
 	
 	
 
-	border-image: url(/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
-	-webkit-border-image: url(/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
-	-moz-border-image: url(/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
-	-o-border-image: url(/CSS/speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-webkit-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-moz-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
+	-o-border-image: url(speech_bubble_left_2.png) 8 10 8 17 stretch stretch;
 	
 }
 
@@ -70,7 +70,7 @@ hr{
 	height: 32px;
 	content:"";
 
-	background-image: url(/CSS/left_chatter.png);
+	background-image: url(left_chatter.png);
 	background-size: 32px 32px;
 	background-position: bottom left;
 
@@ -89,10 +89,10 @@ hr{
 	margin-right: 36px;
 	padding: 4px 15px 4px 10px; /*position within the border*/
 	
-	border-image: url(/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
-	-webkit-border-image: url(/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
-	-moz-border-image: url(/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
-	-o-border-image: url(/CSS/speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-webkit-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-moz-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
+	-o-border-image: url(speech_bubble_right_2.png) 8 17 8 10 stretch stretch ;
 }
 
 .bubbledRight:before{
@@ -117,7 +117,7 @@ hr{
 	height: 32px;
 	content:"";
 
-	background-image: url(/CSS/marvin.ico);
+	background-image: url(marvin.ico);
 	background-size: 32px 32px;
 	background-position: bottom left;
 
