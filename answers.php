@@ -25,7 +25,7 @@
   header('Content-Type: application/json'); // json header
   $random_answer = $answers[array_rand($answers, 1)]; //pick random answer from array
 
-  sleep(rand(1,5)); //sleep so answer isn't instant
+  sleep(rand(1,3)); //sleep so answer isn't instant
 
   echo json_encode($random_answer); //encode answer as json and return
 ?>
