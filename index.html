@@ -63,15 +63,15 @@
 					</div>
 				</div>
 				<div class="col-lg-3 col-md-3 col-sm-2 col-sm-1 column">
-					<div id="evaluate" class="rateResponse" style="display:none">
+					<form id="formRating" class="rateResponse" style="display:none">
 						<h2>Please rate my last response</h2>
 						<label class="radio-inline"><input type="radio" id="great" name="optradio">Great</label>
 						<label class="radio-inline"><input type="radio" id="undecided" name="optradio">Not Sure</label>
 						<label class="radio-inline"><input type="radio" id="terrible" name="optradio">Terrible</label>
-						<input id="chat" type="submit" class="btn btn-success" onclick="rate()" value="Rate">
+						<input type="submit" class="btn btn-success" value="Submit">
 						<hr>
 						<p style="color:black;font-family:courier">&#169; Copyright 2015 - Keith Ferguson</p>
-					</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -82,7 +82,10 @@
 
 <script charset="utf-8">
 	
-	function sendMessageToBot(message){
+	var bots_last_message = ''; //global variable, generally global variables are frowned apon but for this project it suits as an easy way to store the last responce
+	var user_last_message = '';
+
+function sendMessageToBot(message){
 		
 		//Add delay to make it feel more human before the bot starts writing
 		setTimeout(function(){
@@ -92,6 +95,11 @@
 			$('#chat_loader_icon').show();
 			
 			//Submit message to php bot for processing
+           
+            
+           // addReplyToWindow(botMessage);
+            
+
 			$.ajax({
 				url:'answers.php',
 				type: "POST",
@@ -103,8 +111,10 @@
 					//Display answer after successful connection
 					$('#bot_status').text('');
 					$('#chat_loader_icon').hide();
+					
 					addReplyToWindow(data);
-					document.getElementById('evaluate').style.display = "inline";
+					bots_last_message = data;
+					document.getElementById('formRating').style.display = "inline";
 				},
 				error: function( data, textStatus , jqXHR)
 				{
@@ -115,7 +125,10 @@
 				}
 			});
 			
-		}, 600); //0.6 seconds
+			
+            
+			
+		}, 400); //4 seconds
 		
 	}
 	
@@ -152,6 +165,34 @@
 	}
 	
 	$(document).ready(function() {
+
+        //Save Rating from User        
+        $('#formRating').on('submit',function(event){
+			alert("Submitted");
+			event.preventDefault();
+            var rating = $(this).find('[name="optradio"]:checked').attr("id"); //jquery to search within 'this' which is the form, to find all inputs with the name optradio which are checked
+            
+            var message = user_last_message; 
+            var marvinSaid = bots_last_message; //retrieve the bots last message from the global variable (this gets updated after the server returns an answer to a user's input
+
+            alert("You said: "+ message);
+            alert("Marvin said: "+ marvinSaid);
+            alert("The rating was: " + rating);
+			
+			$.ajax({
+			url: 'processResponse.php',
+			type: 'post',
+			data: {query: message, botchat: marvinSaid, response: rating},
+			async: false,
+			success: function(data)
+			{
+				document.getElementById("formRating").style.display = "none";
+			},
+			cache: false
+		});
+			
+		});
+        
 		
 		$('#chatform').on('submit',function(event){
 			event.preventDefault();
@@ -163,6 +204,7 @@
 				
 				// Instantly add user message to chat
 				addMessageToWindow(message);
+                user_last_message = message; //record last user message
 				
 				// Send message to bot which will reply in its own time
 				sendMessageToBot(message);
@@ -170,41 +212,6 @@
 			
 		});
 	});
-	
-	
-	function rate(){
-		var rate_value;
-		if(document.getElementById('great').checked){
-			rate_value = "great";
-		}
-		else if(document.getElementById('undecided').checked){
-			rate_value = "undecided";
-		}
-		else if(document.getElementById('terrible').checked){
-			rate_value = "terrible";
-		}
-		else{
-			rate_value = "not";
-		}
-		
-		var query = document.getElementById('message').value;
-		alert("You said :"+user_message);
-		alert("Marvin said :"+bot_message);
-		alert("The rating was :"+rate_value);
-		
-		$.ajax({
-			url: 'processResponse.php',
-			type: 'post',
-			date: {query: user_message, botchat: bot_message, response: rate_value},
-			async: false,
-			success: function(data)
-			{
-				document.getElementById("evaluate").style.display = "none";
-				document.getElementById("success").sytle.display = "inline";
-			},
-			cache: false
-		});
-	}
 	
 </script>
 
