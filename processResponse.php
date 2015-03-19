@@ -21,5 +21,5 @@
 		}
 	$q1 = "INSERT INTO `AiChatBot`.`interactions` (`interactionID`, `query`, `response`, `responsePerception`, `date`) VALUES (NULL, '$talk', '$botchat', '$evaluation', CURRENT_TIMESTAMP);";
 	$result = $db->query($q1);	
-	echo "Happy Days";
+	alert("Updated: "+ $q1);
 ?>
