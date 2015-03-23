@@ -1,4 +1,4 @@
-<html>
+    <html>
 	<head>
 		<title>Chat Bot</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
@@ -67,7 +67,7 @@
 						<label class="radio-inline"><input type="radio" id="great" name="optradio">Great</label>
 						<label class="radio-inline"><input type="radio" id="undecided" name="optradio">Not Sure</label>
 						<label class="radio-inline"><input type="radio" id="terrible" name="optradio">Terrible</label>
-						<input type="submit" class="btn btn-success" value="Submit">
+                                                <input type="submit" onclick="document.getElementById('formRating').style.display = 'none'" class="btn btn-success" value="Submit">
 						<hr>
 						<p style="color:black;font-family:courier">&#169; Copyright 2015 - Keith Ferguson</p>
 					</form>
@@ -113,7 +113,7 @@ function sendMessageToBot(message){
 					
 					addReplyToWindow(data);
 					bots_last_message = data;
-					document.getElementById('formRating').style.display = "inline";
+					document.getElementById("formRating").style.display = "inline";
 				},
 				error: function( data, textStatus , jqXHR)
 				{
@@ -167,26 +167,32 @@ function sendMessageToBot(message){
 
         //Save Rating from User        
         $('#formRating').on('submit',function(event){
-			alert("Submitted");
+			console.log("Submitted");
 			event.preventDefault();
             var rating = $(this).find('[name="optradio"]:checked').attr("id"); //jquery to search within 'this' which is the form, to find all inputs with the name optradio which are checked
             
             var message = user_last_message; 
             var marvinSaid = bots_last_message; //retrieve the bots last message from the global variable (this gets updated after the server returns an answer to a user's input
 
-            alert("You said: "+ message +", Marvin said: "+ marvinSaid +", The rating was: " + rating );
+            console.log("You said: "+ message +", Marvin said: "+ marvinSaid +", The rating was: " + rating );
+            
 			
-			alert("Starting rated.php");
+			console.log("Starting rated.php");
 			$.ajax({
 				url: 'rated.php',
-				type: 'post',
+				type: "POST",
 				data: {query: message, botchat: marvinSaid, response: rating},
                                 dataType:'json',
+                                cache: false,
 				success: function(data)
 				{
-					document.getElementById("formRating").style.display = "none";
+                                    console.log(data);
 				},
-				cache: false
+                                 error: function(jqXHR, textStatus, errorThrown) {
+                                        console.log(JSON.stringify(jqXHR));
+                                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                                 }
+				
 			});
 			
 		});

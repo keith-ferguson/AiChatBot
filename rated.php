@@ -1,5 +1,8 @@
 <?php
-   $mysqli = new mysqli("localhost", "AiBot", "GQ62uvnQhTr7YWEe", "AiChatBot");
+
+header('Content-type: application/json');
+
+   $mysqli = new mysqli('localhost', 'root', '', 'aichatbot');
 
 /* check connection */
 if (mysqli_connect_errno()) {
@@ -11,7 +14,7 @@ if (mysqli_connect_errno()) {
 if ($stmt === $mysqli->prepare("INSERT INTO `interactions`(`query`, `response`, `responsePerception`, `date`) values (?, ?, ?, ?)")) {
 	
 	/* Bind our params */
-	$stmt->bind_param('ss', $talk, $botchat, $evaluation, CURRENT_TIMESTAMP );
+	$stmt->bind_param($talk, $botchat, $evaluation, CURRENT_TIMESTAMP );
 	
 	/* Set our params */
 
@@ -25,7 +28,7 @@ if ($stmt === $mysqli->prepare("INSERT INTO `interactions`(`query`, `response`, 
 	$stmt->execute();
 	
 	/* Echo results */
-	echo "Inserted {$lastName},{$firstName},{$evaluation}, {CURRENT_TIMESTAMP} into database\n";
+	console.log("Inserted {$lastName},{$firstName},{$evaluation}, {CURRENT_TIMESTAMP} into database\n");
 	
 	
 	/* Close the statement */
