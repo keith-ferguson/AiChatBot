@@ -20,20 +20,42 @@ class TableRows extends RecursiveIteratorIterator {
     } 
 } 
 
- $servername = "localhost";
-    $username = "AiBot";
-    $password = "GQ62uvnQhTr7YWEe";
-    $dbname = "AiChatBot";
+function pg_connection_string() {
+  return "dbname=d2cda3df5m1lok host=ec2-107-20-244-39.compute-1.amazonaws.com port=5432 user=jmnbdtcvtrmijv password=tKVu4N2X
+U3cdBPd46lNfOS2t7f sslmode=require";
+}
+ 
+# Establish db connection
+$db = pg_connect(pg_connection_string());
+if ($db->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    console.log("Connection Establised");
+}
+
+$query = "SELECT ID FROM interactions";
+$result = mysqli_query($dbConnection, $query);
+
+if(empty($result)) {
+                $query = "CREATE TABLE interactions (
+                          ID int(11) AUTO_INCREMENT,
+                          query varchar(500) NOT NULL,
+                          response varchar(500) NOT NULL,
+                          responsePerception varchar(50),
+                          date DATE
+                          )";
+                $result = mysqli_query($dbConnection, $query);
+}
 
 
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $stmt = $conn->prepare("SELECT interactionID, query, response, responsePerception, date FROM interactions"); 
+    $db2 = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $db2->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $db2->prepare("SELECT ID, query, response, responsePerception, date FROM interactions"); 
     $stmt->execute();
 
     // set the resulting array to associative
-    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
+    $result2 = $stmt->setFetchMode(PDO::FETCH_ASSOC); 
     foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) { 
         echo $v;
     }
