@@ -1,17 +1,18 @@
 <?php
-# what is your Mysql database server
-# most common is "localhost". Yahoo Small Business hosting uses "mysql"
-$database_host = "ec2-54-163-228-58.compute-1.amazonaws.com";
-
-# what is the name of the database we are using
-$database_name = "del5bhlb9ibhvn";
-
-# who do we log in as?
-$database_user = "cjolxaecmqoitr";
-
-# and what password do we use
-$database_password = '7nstMoDkTdSMZGkdioEI8itAp8';
-
-
-	
+# This function reads your DATABASE_URL configuration automatically set by Heroku
+# the return value is a string that will work with pg_connect
+function pg_connection_string() {
+  return "dbname=d2cda3df5m1lok host=ec2-107-20-244-39.compute-1.amazonaws.com port=5432 user=jmnbdtcvtrmijv password=tKVu4N2X
+U3cdBPd46lNfOS2t7f sslmode=require";
+}
+ 
+# Establish db connection
+$db = pg_connect(pg_connection_string());
+if ($db->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    console.log("Connection Establised");
+}
+ 
+$result = pg_query($db, "SELECT * from interactions");
 ?>
