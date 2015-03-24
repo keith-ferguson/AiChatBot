@@ -13,6 +13,17 @@ if ($db->connect_error) {
 } else {
     console.log("Connection Establised");
 }
- 
-$result = pg_query($db, "SELECT * from interactions");
-?>
+
+$query = "SELECT ID FROM interactions";
+$result = mysqli_query($dbConnection, $query);
+
+if(empty($result)) {
+                $query = "CREATE TABLE interactions (
+                          ID int(11) AUTO_INCREMENT,
+                          query varchar(500) NOT NULL,
+                          response varchar(500) NOT NULL,
+                          responsePerception varchar(50),
+                          date DATE
+                          )";
+                $result = mysqli_query($dbConnection, $query);
+}
