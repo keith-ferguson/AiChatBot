@@ -19,6 +19,7 @@
 					,"I think you ought to know I'm feeling very depressed."
 					,"Not that anyone cares what I say, but the Restaurant is on the other end of the universe"
 					,"Life. Don't talk to me about life."
+					,"Another random answer that sucks."
 					,"Friend? I don't think I ever came across one of those, sorry, can't help you there."
 					,"And then of course I've got this terrible pain in all the diodes down my left side."
                   );
