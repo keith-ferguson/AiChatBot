@@ -1,15 +1,32 @@
 <?php
 
-header('Content-type: application/json');
-
-   $mysqli = new mysqli('localhost', 'root', '', 'aichatbot');
-
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
+function pg_connection_string() {
+  return "dbname=d2cda3df5m1lok host=ec2-107-20-244-39.compute-1.amazonaws.com port=5432 user=jmnbdtcvtrmijv password=tKVu4N2X
+U3cdBPd46lNfOS2t7f sslmode=require";
 }
-    
+ 
+# Establish db connection
+$db = pg_connect(pg_connection_string());
+if ($db->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    console.log("Connection Establised");
+}
+
+$query = "SELECT ID FROM interactions";
+$result = mysqli_query($dbConnection, $query);
+
+if(empty($result)) {
+                $query = "CREATE TABLE interactions (
+                          ID int(11) AUTO_INCREMENT,
+                          query varchar(500) NOT NULL,
+                          response varchar(500) NOT NULL,
+                          responsePerception varchar(50),
+                          date DATE
+                          )";
+                $result = mysqli_query($dbConnection, $query);
+}
+
 /* Create the prepared statement */
 if ($stmt === $mysqli->prepare("INSERT INTO `interactions`(`query`, `response`, `responsePerception`, `date`) values (?, ?, ?, ?)")) {
 	
