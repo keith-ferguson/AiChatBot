@@ -1,222 +1,219 @@
-    <html>
-	<head>
-		<title>Chat Bot</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
-		<link href="CSS/site.css" rel="stylesheet" type="text/css"/>  
-	</head>
-	
-	<body>
-		<div class="container chatwindow">
-			<div class="row clearfix">
-				<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs column">
-					<div class="jumbotron">
-						<h1>Chat Bot Program
-						</h1>
-						<p>Chat away <a href="ratinglog.php">Ratings</a></p>
-					</div>
-				</div>
-				<div class="hidden-lg hidden-md hidden-sm col-xs-12 column">
-					<strong>Chat Bot Program</strong><br/>
-					<p>Chat away</p>
-				</div>
-                           
-                                
-			</div>
-			<div class="row clearfix">
-				<div class="col-lg-3 col-md-3 col-sm-2 col-xs-1 column">
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-8 col-xs-10 column">					
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<h3 class="panel-title">Chat Window</h3>
-						</div>
-						<div id='chat_window' class="panel-body" style='height:200px;overflow-y:scroll'>
-							<!-- Main Chat -->
-							<div class="bubbledRight">
-								Hello.
-							</div>
-						</div>
-						<!-- Bot status -->
-						<div class="panel-footer" style='min-height:40px;'>
-							<!--container to display what the bot is doing before sends a message -->
-							<span id='bot_status'></span> <img id='chat_loader_icon' style='display:none;height:5px;' src='chat_loader.gif' />
-						</div>
-					</div>
-					
-					
-					<!-- User Input -->
-					<div class="row chatbox">
-						<form id='chatform'>	
-							<div class="input-group">
-								<div class="chattext col-lg-10 col-md-10 col-sm-10 col-xs-10 column">
-									<input type="text"  style="width: 100%; height: 100px;" name='message' 
-									class="form-control" placeholder="enter your message...">
-								</div>
-								<div class="chatbuttons col-lg-2 col-md-2 col-sm-2 col-xs-2 column">
-									<button class="chatsend btn btn-primary" style="width: 100%; height: 100px;" type="submit">Send</button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-3 col-sm-2 col-sm-1 column">
-					<form id="formRating" class="rateResponse" style="display:none">
-						<h2>Please rate my last response</h2>
-						<label class="radio-inline"><input type="radio" id="great" name="optradio">Great</label>
-						<label class="radio-inline"><input type="radio" id="undecided" name="optradio">Not Sure</label>
-						<label class="radio-inline"><input type="radio" id="terrible" name="optradio">Terrible</label>
-                                                <input type="submit" onclick="document.getElementById('formRating').style.display = 'none'" class="btn btn-success" value="Submit">
-						<hr>
-						<p style="color:black;font-family:courier">&#169; Copyright 2015 - Keith Ferguson</p>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-</body>
+<html>
+<head>
+    <title>Chat Bot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
+    <link href="CSS/site.css" rel="stylesheet" type="text/css" />
+</head>
 
+<body>
+    <div class="container chatwindow">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 hidden-xs column">
+                <div class="jumbotron">
+                    <h1>
+                        Chat Bot Program
+                    </h1>
+                    <p>Chat away <a href="ratinglog.php">Ratings</a></p>
+                </div>
+            </div>
+            <div class="hidden-lg hidden-md hidden-sm col-xs-12 column">
+                <strong>Chat Bot Program</strong><br />
+                <p>Chat away</p>
+            </div>
+
+
+        </div>
+        <div class="row clearfix">
+            <div class="col-lg-3 col-md-3 col-sm-2 col-xs-1 column">
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-8 col-xs-10 column">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Chat Window</h3>
+                    </div>
+                    <div id='chat_window' class="panel-body" style='height:200px;overflow-y:scroll'>
+                        <!-- Main Chat -->
+                        <div class="bubbledRight">
+                            Hello.
+                        </div>
+                    </div>
+                    <!-- Bot status -->
+                    <div class="panel-footer" style='min-height:40px;'>
+                        <!--container to display what the bot is doing before sends a message -->
+                        <span id='bot_status'></span> <img id='chat_loader_icon' style='display:none;height:5px;' src='chat_loader.gif' />
+                    </div>
+                </div>
+
+
+                <!-- User Input -->
+                <div class="row chatbox">
+                    <form id='chatform'>
+                        <div class="input-group">
+                            <div class="chattext col-lg-10 col-md-10 col-sm-10 col-xs-10 column">
+                                <input type="text" style="width: 100%; height: 100px;" name='message'
+                                       class="form-control" placeholder="enter your message...">
+                            </div>
+                            <div class="chatbuttons col-lg-2 col-md-2 col-sm-2 col-xs-2 column">
+                                <button class="chatsend btn btn-primary" style="width: 100%; height: 100px;" type="submit">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-2 col-sm-1 column">
+            <form id="formRating" class="rateResponse" style="display:none">
+                <h2>Please rate my last response</h2>
+                <label class="radio-inline"><input type="radio" id="1" name="optradio">Great</label>
+                <label class="radio-inline"><input type="radio" id="0" name="optradio">Not Sure</label>
+                <label class="radio-inline"><input type="radio" id="-0.5" name="optradio">Terrible</label>
+                <input type="submit" onclick="document.getElementById('formRating').style.display = 'none'" class="btn btn-success" value="Submit">
+                <hr>
+                <p style="color:black;font-family:courier">&#169; Copyright 2015 - Keith Ferguson</p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
 
 <script charset="utf-8">
-	
-	var bots_last_message = ''; //global variable, generally global variables are frowned apon but for this project it suits as an easy way to store the last responce
-	var user_last_message = '';
 
-function sendMessageToBot(message){
-		
-		//Add delay to make it feel more human before the bot starts writing
-		setTimeout(function(){
-			
-			//Inform the user the bot is writing a message
-			$('#bot_status').text('Mister bot is writing a message');
-			$('#chat_loader_icon').show();
-			
-			//Submit message to php bot for processing
-           
-            
-           // addReplyToWindow(botMessage);
-            
+    var bots_last_message = ''; //global variable, generally global variables are frowned apon but for this project it suits as an easy way to store the last responce
+    var user_last_message = '';
+    console.log('Starting Script');
 
-			$.ajax({
-				url:'answers.php',
-				type: "POST",
-				data: message,
-				dataType:'json',
-				cache: false,
-				success: function( data, textStatus , jqXHR)
-				{
-					//Display answer after successful connection
-					$('#bot_status').text('');
-					$('#chat_loader_icon').hide();
-					
-					addReplyToWindow(data);
-					bots_last_message = data;
-					document.getElementById("formRating").style.display = "inline";
-				},
-				error: function( data, textStatus , jqXHR)
-				{
-					//something has gone wrong, is the url right or php running?
-					$('#bot_status').text('');
-					$('#chat_loader_icon').hide();
-					alert('unable to connect to bot at this time');
-				}
-			});
-			
-			
-            
-			
-		}, 400); //4 seconds
-		
-	}
-	
-	
-	function addMessageToWindow(message){
-		
-		var chatwindow = $('#chat_window');
-		
-		var row          = $(document.createElement('div')).addClass('bubbledLeft');
-		var user_message = $(document.createElement('div')).addClass('chatline').text(message);
-		
-		row.append(user_message);
-		
-		chatwindow.append(row);
-		
-		//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
-		chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
-	}
-	
-	
-	function addReplyToWindow(message){
-		
-		var chatwindow = $('#chat_window');
-		
-		var row          = $(document.createElement('div')).addClass('bubbledRight');
-		var bot_message = $(document.createElement('div')).addClass('chatline').text(message);
-		
-		row.append(bot_message);
-		
-		chatwindow.append(row);
-		
-		//Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
-		chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
-	}
-	
-	$(document).ready(function() {
+    function sendMessageToBot(message) {
 
-        //Save Rating from User        
-        $('#formRating').on('submit',function(event){
-			console.log("Submitted");
-			event.preventDefault();
+        //Add delay to make it feel more human before the bot starts writing
+        setTimeout(function () {
+
+            //Inform the user the bot is writing a message
+            $('#bot_status').text('Mister bot is writing a message');
+            $('#chat_loader_icon').show();
+
+            //Submit message to php bot for processing
+
+
+            // addReplyToWindow(botMessage);
+
+
+            $.ajax({
+                url: 'answers.php',
+                type: "POST",
+                data: message,
+                dataType: 'json',
+                cache: false,
+                success: function (data, textStatus, jqXHR) {
+                    //Display answer after successful connection
+                    $('#bot_status').text('');
+                    $('#chat_loader_icon').hide();
+
+                    addReplyToWindow(data);
+                    bots_last_message = data;
+                    document.getElementById("formRating").style.display = "inline";
+                },
+                error: function (data, textStatus, jqXHR) {
+                    //something has gone wrong, is the url right or php running?
+                    $('#bot_status').text('');
+                    $('#chat_loader_icon').hide();
+                    alert('unable to connect to bot at this time');
+                }
+            });
+
+
+
+
+        }, 400); //4 seconds
+
+    }
+
+
+    function addMessageToWindow(message) {
+
+        var chatwindow = $('#chat_window');
+
+        var row = $(document.createElement('div')).addClass('bubbledLeft');
+        var user_message = $(document.createElement('div')).addClass('chatline').text(message);
+
+        row.append(user_message);
+
+        chatwindow.append(row);
+
+        //Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+        chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+    }
+
+
+    function addReplyToWindow(message) {
+
+        var chatwindow = $('#chat_window');
+
+        var row = $(document.createElement('div')).addClass('bubbledRight');
+        var bot_message = $(document.createElement('div')).addClass('chatline').text(message);
+
+        row.append(bot_message);
+
+        chatwindow.append(row);
+
+        //Scroll to latest (ref: http://stackoverflow.com/a/2530859/3807889)
+        chatwindow.animate({ scrollTop: chatwindow.prop("scrollHeight") - chatwindow.height() }, 1);
+    }
+
+    $(document).ready(function () {
+
+        //Save Rating from User
+        $('#formRating').on('submit', function (event) {
+            console.log("Submitted");
+            event.preventDefault();
             var rating = $(this).find('[name="optradio"]:checked').attr("id"); //jquery to search within 'this' which is the form, to find all inputs with the name optradio which are checked
-            
-            var message = user_last_message; 
+
+            var message = user_last_message;
             var marvinSaid = bots_last_message; //retrieve the bots last message from the global variable (this gets updated after the server returns an answer to a user's input
 
-            console.log("You said: "+ message +", Marvin said: "+ marvinSaid +", The rating was: " + rating );
-            
-			
-			console.log("Starting rated.php");
-			$.ajax({
-				url: 'rated.php',
-				type: "POST",
-				data: {query: message, botchat: marvinSaid, response: rating},
-                                dataType:'json',
-                                cache: false,
-				success: function(data)
-				{
-                                    console.log(data);
-				},
-                                 error: function(jqXHR, textStatus, errorThrown) {
-                                        console.log(JSON.stringify(jqXHR));
-                                        console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
-                                 }
-				
-			});
-			
-		});
-        
-		
-		$('#chatform').on('submit',function(event){
-			event.preventDefault();
-			var messageinput = $(this).find('[name="message"]');
-			var message = messageinput.val();
-			
-			if(message.length > 0){
-				messageinput.val('').focus(); //clear input box after saving
-				
-				// Instantly add user message to chat
-				addMessageToWindow(message);
-                                 user_last_message = message; //record last user message
-				
-				// Send message to bot which will reply in its own time
-				sendMessageToBot(message);
-			}
-			
-		});
-	});
-	
+            console.log("You said: " + message + ", Marvin said: " + marvinSaid + ", The rating was: " + rating);
+
+
+            console.log("Starting rated.php");
+            $.ajax({
+                url: 'rated.php',
+                type: "POST",
+                data: { query: message, botchat: marvinSaid, response: rating },
+                dataType: 'json',
+                cache: false,
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(JSON.stringify(jqXHR));
+                    console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                }
+
+            });
+
+        });
+
+
+        $('#chatform').on('submit', function (event) {
+            event.preventDefault();
+            var messageinput = $(this).find('[name="message"]');
+            var message = messageinput.val();
+
+            if (message.length > 0) {
+                messageinput.val('').focus(); //clear input box after saving
+
+                // Instantly add user message to chat
+                addMessageToWindow(message);
+                user_last_message = message; //record last user message
+
+                // Send message to bot which will reply in its own time
+                sendMessageToBot(message);
+            }
+
+        });
+    });
+
 </script>
 
-</html>
+

@@ -8,6 +8,7 @@ U3cdBPd46lNfOS2t7f sslmode=require";
 # Establish db connection
 $db = pg_connect(pg_connection_string());
 if ($db->connect_error) {
+    console.log("Connection Failed");
     die("Connection failed: " . $conn->connect_error);
 } else {
     console.log("Connection Establised");
@@ -36,9 +37,9 @@ if ($stmt === $mysqli->prepare("INSERT INTO `interactions`(`query`, `response`, 
 	/* Set our params */
 
 
-        $talk = filter_input(INPUT_POST, 'message');
-        $botchat = filter_input(INPUT_POST, 'marvinSaid');
-        $evaluation = filter_input(INPUT_POST, 'rating');
+    $talk = filter_input(INPUT_POST, 'query');
+    $botchat = filter_input(INPUT_POST, 'botchat');
+    $evaluation = filter_input(INPUT_POST, 'response');
 
 	
 	/* Execute the prepared Statement */
