@@ -16,15 +16,15 @@ class TestCase extends \PHPUnit_Framework_TestCase
     /**
      * @return array Record
      */
-    protected function getRecord($level = Logger::WARNING, $message = 'test')
+    protected function getRecord($level = Logger::WARNING, $message = 'test', $context = array())
     {
         return array(
             'message' => $message,
-            'context' => array(),
+            'context' => $context,
             'level' => $level,
             'level_name' => Logger::getLevelName($level),
             'channel' => 'test',
-            'datetime' => new \DateTime(),
+            'datetime' => \DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(true))),
             'extra' => array(),
         );
     }
@@ -51,7 +51,7 @@ class TestCase extends \PHPUnit_Framework_TestCase
         $formatter = $this->getMock('Monolog\\Formatter\\FormatterInterface');
         $formatter->expects($this->any())
             ->method('format')
-            ->will($this->returnCallback(function($record) { return $record['message']; }));
+            ->will($this->returnCallback(function ($record) { return $record['message']; }));
 
         return $formatter;
     }
